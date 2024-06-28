@@ -1,0 +1,11 @@
+cron: "*/5 * * * *" # The cron schedule for the cronjob.
+helpers: # The list of helpers that are used.
+  - haproxy
+  - s3
+haproxy:
+  httpInternalPort: 8080 # The internal NodePort of the HTTP service.
+  httpsInternalPort: 8443 # The internal NodePort of the HTTPS service.
+s3:
+  bucketName: kubepokemedia # The name of the S3 bucket.
+  region: us-east-1 # The region of the S3 bucket.
+  endpoint: http://minio:9000 # The endpoint of the S3 service, if you are not using AWS S3.
