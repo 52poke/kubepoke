@@ -99,7 +99,7 @@ func (h *S3PolicyHelper) ClusterNodesUpdated(ctx context.Context, nodes []*inter
 	}
 
 	_, err := h.client.PutBucketPolicy(ctx, &s3.PutBucketPolicyInput{
-		Bucket: aws.String("bucket"),
+		Bucket: aws.String(h.bucket),
 		Policy: aws.String(policyOutput.String()),
 	})
 	if err != nil {
