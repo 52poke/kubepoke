@@ -82,7 +82,7 @@ func NewS3PolicyHelper(helperConfig *S3PolicyHelperConfig) (*S3PolicyHelper, err
 func (h *S3PolicyHelper) ClusterNodesUpdated(ctx context.Context, nodes []*interfaces.NodeInfo) error {
 	var ips []string
 	for _, node := range nodes {
-		ips = append(ips, node.ExternalIP)
+		ips = append(ips, node.ExternalIPs...)
 	}
 	configData := configData{
 		BucketName: h.bucket,

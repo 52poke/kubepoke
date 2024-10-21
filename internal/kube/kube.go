@@ -47,20 +47,20 @@ func (s *KubeService) GetNodeInfo(ctx context.Context) ([]*interfaces.NodeInfo, 
 	var nodeList []*interfaces.NodeInfo
 	for _, node := range nodes.Items {
 		var internalIP string
-		var externalIP string
+		var externalIPs []string
 		for _, address := range node.Status.Addresses {
 			switch address.Type {
 			case v1.NodeInternalIP:
 				internalIP = address.Address
 			case v1.NodeExternalIP:
-				externalIP = address.Address
+				externalIPs = append(externalIPs, address.Address)
 			}
 		}
 		if internalIP != "" {
 			nodeList = append(nodeList, &interfaces.NodeInfo{
-				Name:       node.Name,
-				InternalIP: internalIP,
-				ExternalIP: externalIP,
+				Name:        node.Name,
+				InternalIP:  internalIP,
+				ExternalIPs: externalIPs,
 			})
 		}
 	}
